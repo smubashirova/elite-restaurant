@@ -104,30 +104,34 @@
   </footer>
 
   <script>
-    document.getElementById('contactForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
+  const backendUrl = window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://elite-restaurant.onrender.com';
 
-      const formData = {
-        name: this.name.value,
-        email: this.email.value,
-        message: this.message.value
-      };
+  document.getElementById('contactForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
-      const response = await fetch('http://localhost:3000/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+    const formData = {
+      name: this.name.value,
+      email: this.email.value,
+      message: this.message.value
+    };
 
-      if (response.ok) {
-        alert('Message sent successfully!');
-        this.reset();
-      } else {
-        alert('There was a problem sending your message.');
-      }
+    const response = await fetch(`${backendUrl}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
     });
-  </script>
+
+    if (response.ok) {
+      alert('Message sent successfully!');
+      this.reset();
+    } else {
+      alert('There was a problem sending your message.');
+    }
+  });
+</script>
 </body>
 </html>
