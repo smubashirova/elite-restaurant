@@ -132,11 +132,30 @@ button:hover { background: #c79a00; }
 
 /* Footer */
 footer {
-  background: #333; color: #fff; display: flex; flex-wrap: wrap; justify-content: space-between;
-  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 1em 2em;
+  font-family: sans-serif;
 }
-.social a { color: #fff; margin-right: 1rem; font-size: 1.5rem; transition: color 0.3s; }
-.social a:hover { color: #e9a800; }
+
+footer .hours p {
+  margin: 0.2em 0;
+}
+
+footer .social a {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+footer .social i {
+  transition: transform 0.3s;
+}
+
+footer .social i:hover {
+  transform: scale(1.2);
+}
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
