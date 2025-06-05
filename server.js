@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
@@ -14,37 +13,11 @@ app.use(express.json());
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.error(err));
-
-// Mongoose Schema
-const ContactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  message: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-const Contact = mongoose.model('Contact', ContactSchema);
-
-// POST /contact
-app.post('/contact', async (req, res) => {
+// POST /contact without DB
+app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
-  try {
-    const newContact = new Contact({ name, email, message });
-    await newContact.save();
-    res.status(200).json({ message: 'Message received!' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
+  console.log('Contact form submission:', { name, email, message });
+  res.status(200).json({ message: 'Message received!' });
 });
 
 // Serve index.html for root route
