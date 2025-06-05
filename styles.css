@@ -11,9 +11,9 @@ body {
 }
 
 header {
-  background-color: #fff; /* white */
+  background-color: transparent;
   color: #333;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow */
+  box-shadow: none; 
   position: sticky;
   top: 0;
   z-index: 10;
@@ -22,7 +22,6 @@ header {
   justify-content: space-between;
   padding: 1rem 2rem;
 }
-
 
 .logo {
   font-size: 1.8rem;
