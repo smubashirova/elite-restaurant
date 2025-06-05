@@ -1,28 +1,51 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-require('dotenv').config();
+const express  = require('express');
+const sqlite3  = require('sqlite3').verbose();
+const path     = require('path');
 
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+/* ----------  SQLite setup  ---------- */
+const db = new sqlite3.Database('./database.db', (err) => {
+  if (err) console.error(err.message);
+  else     console.log('Connected to SQLite.');
+});
 
-// Serve static files
+db.run(`
+  CREATE TABLE IF NOT EXISTS contacts (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    name      TEXT NOT NULL,
+    email     TEXT NOT NULL,
+    message   TEXT NOT NULL,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+
+/* ----------  Middleware & static  ---------- */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// POST /contact without DB
+/* ----------  API route  ---------- */
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
-  console.log('Contact form submission:', { name, email, message });
-  res.status(200).json({ message: 'Message received!' });
+  if (!name || !email || !message)
+    return res.status(400).send('All fields are required.');
+
+  const sql = `INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)`;
+  db.run(sql, [name, email, message], function (err) {
+    if (err) {
+      console.error(err.message);
+      return res.status(500).send('Server error. Try again later.');
+    }
+    res.send('Message received! Thank you.');
+  });
 });
 
-// Serve index.html for root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+/* ----------  Fallback  ---------- */
+app.get('*', (_, res) =>
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+);
 
+/* ----------  Start  ---------- */
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
