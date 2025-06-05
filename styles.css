@@ -25,20 +25,9 @@ header {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
 .logo-container {
   display: flex;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  background-color: transparent; /* or rgba(255,255,255,0.8) if needed for readability */
-  z-index: 1000; /* make sure it stays above everything else */
 }
 
 .logo-image {
@@ -50,7 +39,8 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  margin-left: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
@@ -59,8 +49,9 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: black; /* <-- set to black */
+  color: black; /* black menu text */
   font-weight: 600;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
