@@ -42,4 +42,14 @@ app.post('/contact', async (req, res) => {
     await newContact.save();
     res.status(200).json({ message: 'Message received!' });
   } catch (err) {
-    console.error(e
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// 👇 Serve index.html for root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

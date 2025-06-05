@@ -8,20 +8,21 @@
 body {
   line-height: 1.6;
   color: #333;
-  padding-top: 80px;
+  padding-top: 100px;
 }
 
 header {
-  background-color: transparent;
-  color: #333;
-  box-shadow: none; 
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -30,6 +31,8 @@ header {
 }
 
 .logo-container {
+  display: flex;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,10 +46,11 @@ header {
   height: auto;
 }
 
-
 nav ul {
   list-style: none;
   display: flex;
+  gap: 1.5rem;
+  margin-left: 2rem;
 }
 
 nav ul li {
@@ -54,8 +58,8 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
+  color: black; /* <-- set to black */
   font-weight: 600;
 }
 
