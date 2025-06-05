@@ -11,17 +11,18 @@ body {
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  justify-content: space-between;
+  background-color: #fff; /* white */
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow */
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(6px); /* optional: adds blur behind header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
+
 
 .logo {
   font-size: 1.8rem;
