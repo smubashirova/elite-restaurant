@@ -23,20 +23,20 @@ header {
   padding: 1rem 2rem;
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
 .logo-container {
-  text-align: center;
-  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: transparent; /* or rgba(255,255,255,0.8) if needed for readability */
+  z-index: 1000; /* make sure it stays above everything else */
 }
 
 .logo-image {
   width: 150px;
   height: auto;
 }
+
 
 nav ul {
   list-style: none;
