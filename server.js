@@ -11,20 +11,14 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// Middleware to parse JSON
 app.use(express.json());
-
-// Serve static files if needed
 app.use(express.static(path.join(__dirname, 'public')));
 
-// POST /contact route
 app.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
-
   if (!name || !email || !message) {
     return res.status(400).send('All fields are required.');
   }
-
   try {
     const query = `INSERT INTO contacts (name, email, message) VALUES ($1, $2, $3)`;
     await pool.query(query, [name, email, message]);
@@ -35,9 +29,15 @@ app.post('/contact', async (req, res) => {
   }
 });
 
-// Fallback route to serve frontend
-app.get('*', (_, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Optional catch-all
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
