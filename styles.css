@@ -233,6 +233,35 @@ button:hover {
   background: #c79a00;
 }
 
+/* Hide burger button on desktop */
+#burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Show burger button and hide nav menu on small screens */
+@media (max-width: 768px) {
+  #burger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  /* Show nav menu when toggled */
+  nav ul.show {
+    display: flex;
+  }
+}
+
 /* FOOTER */
 footer {
   background: #333;

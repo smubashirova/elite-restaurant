@@ -13,6 +13,7 @@
   <div class="logo-container">
     <img src="images/elite-logo.png" alt="Elite Restaurant Logo" class="logo-image" />
   </div>
+  <button id="burger">☰</button>  <!-- hamburger button -->
   <nav id="navbar">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -110,7 +111,9 @@
   const backendUrl = window.location.hostname === 'localhost'
     ? 'http://localhost:3000'
     : 'https://elite-restaurant.onrender.com';
-
+  document.getElementById('burger').onclick = () => {
+  document.querySelector('nav ul').classList.toggle('show');
+};  
   document.getElementById('contactForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
