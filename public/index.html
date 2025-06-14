@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elite Restaurant</title>
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body>
+
   <!-- Header & Navigation -->
   <header>
     <div class="logo-container">
-      <img src="/images/elite-logo.png" alt="Elite Restaurant Logo" class="logo-image" />
+      <img src="images/elite-logo.png" alt="Elite Restaurant Logo" class="logo-image" />
     </div>
     <button id="burger">☰</button>
     <nav>
@@ -31,15 +31,15 @@
     <p>A Taste of Kazakhstan</p>
   </section>
 
-  <!-- Menu -->
+  <!-- Menu Section -->
   <section id="menu" class="menu">
     <h2>Our Menu</h2>
     <div class="menu-cards">
-      <div class="card"><h3>Plov</h3><p>2300 KZT</p></div>
-      <div class="card"><h3>Beshbarmak</h3><p>2500 KZT</p></div>
-      <div class="card"><h3>Lagman</h3><p>2200 KZT</p></div>
-      <div class="card"><h3>Baursak</h3><p>900 KZT</p></div>
-      <div class="card"><h3>Kumys</h3><p>1500 KZT</p></div>
+      <div class="card"><h3>Plov</h3><p>2300 KZT</p></div>
+      <div class="card"><h3>Beshbarmak</h3><p>2500 KZT</p></div>
+      <div class="card"><h3>Lagman</h3><p>2200 KZT</p></div>
+      <div class="card"><h3>Baursak</h3><p>900 KZT</p></div>
+      <div class="card"><h3>Kumys</h3><p>1500 KZT</p></div>
     </div>
   </section>
 
@@ -47,12 +47,12 @@
   <section class="gallery">
     <h2>Gallery</h2>
     <div class="slider">
-      <img src="/images/food1.jpg" alt="Dish 1" />
-      <img src="/images/food2.jpg" alt="Dish 2" />
-      <img src="/images/interior1.jpg" alt="Interior 1" />
-      <img src="/images/food3.jpg" alt="Dish 3" />
-      <img src="/images/kitchen.jpg" alt="Kitchen" />
-      <img src="/images/village.jpg" alt="Village" />
+      <img src="images/food1.jpg" alt="Dish 1" />
+      <img src="images/food2.jpg" alt="Dish 2" />
+      <img src="images/interior1.jpg" alt="Interior 1" />
+      <img src="images/food3.jpg" alt="Dish 3" />
+      <img src="images/kitchen.jpg" alt="Kitchen" />
+      <img src="images/village.jpg" alt="Village" />
     </div>
   </section>
 
@@ -61,7 +61,7 @@
     <h2>About Us</h2>
     <p>
       Elite was founded in the heart of Karnak to celebrate the rich culinary
-      traditions of Kazakhstan. We bring age‑old recipes like plov and
+      traditions of Kazakhstan. We bring age‑old recipes like plov and
       beshbarmak to your table with love and hospitality.
     </p>
   </section>
@@ -71,42 +71,41 @@
     <h2>Contact Us</h2>
     <div class="contact-container">
       <form id="contact-form">
-        <input name="name"  placeholder="Name"  required />
+        <input name="name" placeholder="Name" required />
         <input name="email" type="email" placeholder="Email" required />
         <textarea name="message" placeholder="Message" required></textarea>
         <button type="submit">Send</button>
       </form>
-      <iframe src="https://www.google.com/maps?q=Karnak,Kazakhstan&output=embed" width="300" height="200" style="border:0" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps?q=Karnak,Kazakhstan&output=embed" width="300" height="200" style="border:0;" loading="lazy"></iframe>
     </div>
   </section>
 
-<!-- Footer -->
-<footer style="display: flex; justify-content: space-between; align-items: center; padding: 1em; background: #f8f8f8;">
-  <div class="hours">
-    <p>Mon-Sat: 10:00-22:00</p>
-    <p>Sun: 12:00-20:00</p>
-  </div>
-  <div class="social">
-    <a href="https://www.instagram.com/YOUR_USERNAME_HERE" target="_blank" aria-label="Instagram">
-      <i class="fab fa-instagram" style="font-size: 1.5em; color: #C13584;"></i>
-    </a>
-  </div>
-</footer>
+  <!-- Cart Section -->
+  <section id="cart" class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: 0 KZT</p>
+    <div class="cart-buttons">
+      <button id="clear-cart">Clear Cart</button>
+    </div>
+  </section>
 
-<!-- Shopping Cart Section -->
-<section id="cart" class="cart">
-  <h2>Your Cart</h2>
-  <ul id="cart-items"></ul>
-  <p id="cart-total">Total: 0 KZT</p>
-  <div class="cart-buttons">
-    <button id="clear-cart">Clear Cart</button>
-  </div>
-</section>
-
+  <!-- Footer -->
+  <footer>
+    <div class="hours">
+      <p>Mon-Sat: 10:00-22:00</p>
+      <p>Sun: 12:00-20:00</p>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/YOUR_USERNAME_HERE" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script>
-    // Hamburger menu
+    // Burger Menu
     document.getElementById('burger').onclick = () =>
       document.querySelector('nav ul').classList.toggle('show');
 
@@ -116,7 +115,7 @@
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
       try {
-        const res  = await fetch('/contact', {
+        const res = await fetch('/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -128,67 +127,72 @@
         alert('Network error — please try again later.');
       }
     });
-  </script>
-<script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartList = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-  const clearCartBtn = document.getElementById('clear-cart');
 
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
+    // Shopping Cart
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const clearCartBtn = document.getElementById('clear-cart');
 
-  function updateCart() {
-    cartList.innerHTML = '';
-    let total = 0;
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
 
-    cart.forEach((item, index) => {
+    function updateCart() {
+      cartList.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
       const li = document.createElement('li');
+      li.classList.add('cart-item-added'); // 👈 bounce animation
       li.innerHTML = `
         ${item.name} x${item.qty} — ${item.price * item.qty} KZT
-        <button onclick="removeFromCart(${index})">Remove</button>
-      `;
-      cartList.appendChild(li);
-      total += item.price * item.qty;
+      <button onclick="removeFromCart(${index})">Remove</button>
+    `;
+    cartList.appendChild(li);
+    total += item.price * item.qty;
+  });
+
+  cartTotal.textContent = `Total: ${total} KZT`;
+
+  //Flash animation
+  const cartSection = document.querySelector('.cart');
+  cartSection.classList.remove('flash'); // reset
+  void cartSection.offsetWidth;          // reflow trick
+  cartSection.classList.add('flash');
+
+  saveCart();
+}
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    clearCartBtn.addEventListener('click', () => {
+      cart.length = 0;
+      updateCart();
     });
 
-    cartTotal.textContent = `Total: ${total} KZT`;
-    saveCart();
-  }
+    // Add click event to menu cards
+    document.querySelectorAll('.menu .card').forEach(card => {
+      const name = card.querySelector('h3').textContent;
+      const price = parseInt(card.querySelector('p').textContent);
+      card.style.cursor = 'pointer';
+      card.onclick = () => addToCart(name, price);
+    });
 
-  function addToCart(name, price) {
-    const existing = cart.find(item => item.name === name);
-    if (existing) {
-      existing.qty++;
-    } else {
-      cart.push({ name, price, qty: 1 });
-    }
     updateCart();
-  }
-
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
-
-  clearCartBtn.addEventListener('click', () => {
-    cart.length = 0;
-    updateCart();
-  });
-
-  // Initialize menu items as clickable
-  document.querySelectorAll('.menu .card').forEach(card => {
-    const name = card.querySelector('h3').textContent;
-    const price = parseInt(card.querySelector('p').textContent);
-    card.style.cursor = 'pointer';
-    card.onclick = () => addToCart(name, price);
-  });
-
-  // On page load
-  updateCart();
-</script>
- 
-
+  </script>
 </body>
 </html>
