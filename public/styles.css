@@ -1,176 +1,305 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: row;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+body {
+  line-height: 1.6;
+  background: #fdfcf9;
+  padding-top: 100px;
+  color: #333;
+}
+
+/* Header */
 header {
-  background: #333;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
   position: fixed;
   top: 0;
-  z-index: 10;
-}
-
-.logo-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0 0 0 / 0.06);
 }
 
 .logo-image {
-  width: 50px;
-  height: auto;
+  width: 120px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-nav ul li a {
-  color: white;
+nav a {
   text-decoration: none;
+  color: #333;
+  font-weight: 600;
 }
 
-nav ul.show {
-  display: block;
+nav a:hover {
+  color: #e9a800;
 }
 
+#burger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #burger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}
+
+/* Hero */
 .hero {
-  margin-top: 80px;
-  padding: 2rem;
+  height: 90vh;
+  background: url("images/hero-banner.jpg") center/cover no-repeat;
+  display: grid;
+  place-content: center;
   text-align: center;
-  background: #f2f2f2;
+  color: white;
+  text-shadow: 1px 1px 6px rgba(0 0 0 / 0.6);
 }
 
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+/* Menu */
 .menu {
-  padding: 2rem;
+  background: #fff9ef;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.menu h2 {
+  color: #e9a800;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .menu-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
+  justify-content: center;
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  cursor: pointer;
-  width: 150px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  background: white;
+  width: 200px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0 0 0 / 0.1);
+  transition: transform 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px);
 }
 
+.card h3 {
+  color: #e9a800;
+}
+
+/* Gallery */
 .gallery {
-  padding: 2rem;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .slider {
   display: flex;
-  overflow-x: auto;
   gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
 }
 
 .slider img {
-  height: 150px;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 10px rgba(0 0 0 / 0.15);
 }
 
-.about, .contact {
-  padding: 2rem;
+/* About */
+.about {
+  max-width: 900px;
+  margin: auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.about h2 {
+  color: #e9a800;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 1.2rem;
+}
+
+/* Contact */
+.contact {
+  max-width: 1000px;
+  margin: auto;
+  padding: 4rem 2rem;
+}
+
+.contact h2 {
+  text-align: center;
+  color: #e9a800;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .contact-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
-footer {
-  padding: 1rem;
-  background: #222;
-  color: white;
+form {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1 1 300px;
 }
 
-.cart {
-  position: fixed;
-  right: 0;
-  top: 80px;
-  width: 300px;
-  background: #f9f9f9;
-  border-left: 1px solid #ccc;
+input, textarea {
   padding: 1rem;
-  height: calc(100% - 80px);
-  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fffaf3;
 }
 
-.cart h2 {
-  margin-top: 0;
+button {
+  padding: 1rem;
+  background: #e9a800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.cart ul {
-  list-style: none;
-  padding: 0;
+button:hover {
+  background: #c79a00;
 }
 
-.cart li {
-  margin-bottom: 10px;
+/* Footer */
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #f8f8f8;
+  padding: 1em 2em;
 }
 
-.cart button {
-  background: red;
+footer .hours p {
+  margin: 0.2em 0;
+}
+
+footer .social i {
+  color: #C13584;
+  font-size: 1.5em;
+  transition: transform 0.3s;
+}
+
+footer .social i:hover {
+  transform: scale(1.2);
+}
+
+/* Cart */
+.cart {
+  background: #f9f9f9;
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 8px;
+  border-top: 3px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+#cart-items button {
+  background: #e74c3c;
   color: white;
   border: none;
-  padding: 4px 8px;
+  padding: 4px 10px;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+#cart-total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.1rem;
 }
 
 .cart-buttons {
-  margin-top: 1rem;
   text-align: right;
 }
 
-.cart-buttons button {
-  background: #444;
+#clear-cart {
+  background: #555;
   color: white;
   border: none;
   padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 10px;
   cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .menu-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contact-container {
-    flex-direction: column;
-  }
-
-  .cart {
-    width: 100%;
-    top: auto;
-    bottom: 0;
-    height: 300px;
-    border-left: none;
-    border-top: 1px solid #ccc;
-  }
 }
