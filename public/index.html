@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Restaurant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Elite Restaurant</h1>
+  </header>
+
+  <!-- Menu Section -->
+  <section class="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-cards">
+      <div class="card" data-name="Plov" data-price="2300"><h3>Plov</h3><p>2300 KZT</p></div>
+      <div class="card" data-name="Beshbarmak" data-price="2500"><h3>Beshbarmak</h3><p>2500 KZT</p></div>
+      <div class="card" data-name="Lagman" data-price="2200"><h3>Lagman</h3><p>2200 KZT</p></div>
+      <div class="card" data-name="Baursak" data-price="900"><h3>Baursak</h3><p>900 KZT</p></div>
+      <div class="card" data-name="Kumys" data-price="1500"><h3>Kumys</h3><p>1500 KZT</p></div>
+    </div>
+  </section>
+
+  <!-- Cart Toggle Button -->
+  <button id="toggle-cart" aria-label="Toggle Cart"><i class="fas fa-shopping-cart"></i></button>
+
+  <!-- Shopping Cart -->
+  <div id="cart" class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: 0 KZT</p>
+    <div class="cart-buttons">
+      <button id="clear-cart">Clear Cart</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
