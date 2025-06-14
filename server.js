@@ -41,3 +41,25 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+app.post('/api/orders', async (req, res) => {
+  const { items, total } = req.body;
+
+  if (!items || !Array.isArray(items) || items.length === 0 || !total) {
+    return res.status(400).json({ error: 'Invalid order data' });
+  }
+
+  try {
+    const client = await pool.connect();
+    const result = await client.query(
+      `INSERT INTO orders (items, total_price, created_at)
+       VALUES ($1, $2, NOW()) RETURNING id`,
+      [JSON.stringify(items), total]
+    );
+    client.release();
+    res.json({ success: true, orderId: result.rows[0].id });
+  } catch (err) {
+    console.error('DB error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
