@@ -157,8 +157,64 @@ footer .social i:hover {
   transform: scale(1.2);
 }
 
+
 /* Responsive tweaks */
 @media (max-width: 768px) {
   .menu-cards { flex-direction: column; align-items: center; }
   .contact-container { flex-direction: column; align-items: center; }
+}
+
+.cart {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-top: 3px solid #ccc;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+#cart-items button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#cart-total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+#clear-cart {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-buttons {
+  text-align: right;
 }

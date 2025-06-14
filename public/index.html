@@ -81,17 +81,28 @@
   </section>
 
 <!-- Footer -->
-<footer>
+<footer style="display: flex; justify-content: space-between; align-items: center; padding: 1em; background: #f8f8f8;">
   <div class="hours">
-    <p>Mon-Sat: 9:00 AM - 10:00 PM</p>
-    <p>Sun: 12:00 PM - 8:00 PM</p>
+    <p>Mon-Sat: 10:00-22:00</p>
+    <p>Sun: 12:00-20:00</p>
   </div>
   <div class="social">
-    <a href="https://www.instagram.com/elite_restaurant_karnak" target="_blank">
-      <i class="fab fa-instagram fa-2x"></i>
+    <a href="https://www.instagram.com/YOUR_USERNAME_HERE" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram" style="font-size: 1.5em; color: #C13584;"></i>
     </a>
   </div>
 </footer>
+
+<!-- Shopping Cart Section -->
+<section id="cart" class="cart">
+  <h2>Your Cart</h2>
+  <ul id="cart-items"></ul>
+  <p id="cart-total">Total: 0 KZT</p>
+  <div class="cart-buttons">
+    <button id="clear-cart">Clear Cart</button>
+  </div>
+</section>
+
 
   <!-- Scripts -->
   <script>
@@ -118,5 +129,66 @@
       }
     });
   </script>
+<script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartList = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  const clearCartBtn = document.getElementById('clear-cart');
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  function updateCart() {
+    cartList.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.name} x${item.qty} — ${item.price * item.qty} KZT
+        <button onclick="removeFromCart(${index})">Remove</button>
+      `;
+      cartList.appendChild(li);
+      total += item.price * item.qty;
+    });
+
+    cartTotal.textContent = `Total: ${total} KZT`;
+    saveCart();
+  }
+
+  function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, qty: 1 });
+    }
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  clearCartBtn.addEventListener('click', () => {
+    cart.length = 0;
+    updateCart();
+  });
+
+  // Initialize menu items as clickable
+  document.querySelectorAll('.menu .card').forEach(card => {
+    const name = card.querySelector('h3').textContent;
+    const price = parseInt(card.querySelector('p').textContent);
+    card.style.cursor = 'pointer';
+    card.onclick = () => addToCart(name, price);
+  });
+
+  // On page load
+  updateCart();
+</script>
+ 
+
 </body>
 </html>
