@@ -89,58 +89,5 @@
       <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const addBtns = document.querySelectorAll('.add-btn');
-      const cart = document.getElementById('cart');
-      const toggleCartBtn = document.getElementById('toggle-cart');
-      const cartList = document.getElementById('cart-list');
-      const cartTotal = document.getElementById('cart-total');
-      const cartCount = document.getElementById('cart-count');
-      let cartItems = [];
-
-      function updateCartDisplay() {
-        cartList.innerHTML = '';
-        let total = 0;
-        cartItems.forEach((item, index) => {
-          total += item.price;
-          const li = document.createElement('li');
-          li.innerHTML = `${item.name} - ${item.price} KZT <button onclick="removeItem(${index})">✖</button>`;
-          cartList.appendChild(li);
-        });
-        cartTotal.textContent = `Total: ${total} KZT`;
-        cartCount.textContent = cartItems.length;
-      }
-
-      function removeItem(index) {
-        cartItems.splice(index, 1);
-        updateCartDisplay();
-      }
-      window.removeItem = removeItem;
-
-      addBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('.card');
-          const name = card.dataset.name;
-          const price = parseInt(card.dataset.price);
-          cartItems.push({ name, price });
-          updateCartDisplay();
-        });
-      });
-
-      toggleCartBtn.addEventListener('click', () => {
-        cart.classList.toggle('hidden');
-        cart.classList.toggle('open');
-      });
-
-      document.getElementById('place-order').addEventListener('click', () => {
-        if (cartItems.length === 0) return alert("Cart is empty!");
-        alert("Order placed successfully!");
-        cartItems = [];
-        updateCartDisplay();
-      });
-    });
-  </script>
 </body>
 </html>

@@ -3,14 +3,14 @@
  * Only handles API + static files – no browser DOM code here.
  */
 require("dotenv").config();
-const express    = require("express");
-const cors       = require("cors");
-const helmet     = require("helmet");
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
 const compression = require("compression");
-const { Pool }   = require("pg");
-const path       = require("path");
+const { Pool } = require("pg");
+const path = require("path");
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 /* ----------  PostgreSQL ---------- */
@@ -39,7 +39,7 @@ app.post("/contact", async (req, res) => {
       `INSERT INTO contacts (name, email, message) VALUES ($1,$2,$3)`,
       [name, email, message]
     );
-    res.json({ success: true });
+    res.json({ success: true, message: "Thanks for reaching out! We'll reply soon." });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "DB error" });
@@ -58,7 +58,7 @@ app.post("/api/orders", async (req, res) => {
        VALUES ($1,$2,NOW()) RETURNING id`,
       [JSON.stringify(items), total]
     );
-    res.json({ success: true, orderId: result.rows[0].id });
+    res.json({ success: true, orderId: result.rows[0].id, message: "Order placed successfully!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "DB error" });
@@ -72,4 +72,3 @@ app.get("*", (_req, res) => {
 
 /* ----------  Start Server ---------- */
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
