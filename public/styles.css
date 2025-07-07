@@ -129,6 +129,19 @@ nav a:hover {
   color: #e9a800;
 }
 
+.card .add-btn{
+  display:block;
+  margin-top:1rem;
+  background:#e9a800;
+  color:#fff;
+  border:none;
+  padding:.5rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .25s;
+}
+.card .add-btn:hover{ background:#c79a00; }
+
 /* Gallery */
 .gallery {
   padding: 4rem 2rem;
@@ -249,57 +262,50 @@ footer .social i:hover {
   transform: scale(1.2);
 }
 
-/* Cart */
+/* Right-side Cart */
 .cart {
-  background: #f9f9f9;
-  padding: 20px;
-  max-width: 600px;
-  margin: 40px auto;
-  border-radius: 8px;
-  border-top: 3px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 300px;
+  background: #fff;
+  padding: 1rem;
+  border-left: 3px solid #e9a800;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  height: calc(100% - 100px);
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+  z-index: 999;
+}
+
+/* Add this toggle class if you want sliding cart */
+.cart.hidden {
+  transform: translateX(100%);
 }
 
 .cart h2 {
+  font-size: 1.3rem;
+  color: #e9a800;
+  margin-bottom: 1rem;
   text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
 }
 
-#cart-items li {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  font-size: 1rem;
-  border-bottom: 1px solid #ddd;
+.toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #333;
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10000;
 }
 
-#cart-items button {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#cart-total {
-  text-align: right;
-  font-weight: bold;
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-
-.cart-buttons {
-  text-align: right;
-}
-
-#clear-cart {
-  background: #555;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin-top: 10px;
-  cursor: pointer;
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }

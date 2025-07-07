@@ -63,3 +63,41 @@ app.post('/api/orders', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Attach add-to-cart event to buttons
+document.querySelectorAll('.add-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.card');
+    const name = card.dataset.name;
+    const price = parseInt(card.dataset.price);
+    addToCart(name, price);
+    showToast(`${name} added ✓`);
+  });
+});
+async function placeOrder() {
+  if (!cart.length) return alert("Cart is empty.");
+  const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+
+  try {
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: cart, total })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert("Order placed! ID: " + data.orderId);
+      cart.length = 0;
+      updateCart();
+    } else throw new Error();
+  } catch {
+    alert("Failed to place order. Try again.");
+  }
+}
