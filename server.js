@@ -71,16 +71,7 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2000);
 }
 
-// Attach add-to-cart event to buttons
-document.querySelectorAll('.add-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.card');
-    const name = card.dataset.name;
-    const price = parseInt(card.dataset.price);
-    addToCart(name, price);
-    showToast(`${name} added ✓`);
-  });
-});
+
 async function placeOrder() {
   if (!cart.length) return alert("Cart is empty.");
   const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
