@@ -32,15 +32,15 @@
     <h2>Our Menu</h2>
     <div class="menu-cards">
       <div class="card" data-name="Plov" data-price="2300">
-        <h3>Plov</h3><p>2300 KZT</p>
+        <h3>Plov</h3><p>2300 KZT</p>
         <button class="add-btn">Add to Cart</button>
       </div>
       <div class="card" data-name="Beshbarmak" data-price="2500">
-        <h3>Beshbarmak</h3><p>2500 KZT</p>
+        <h3>Beshbarmak</h3><p>2500 KZT</p>
         <button class="add-btn">Add to Cart</button>
       </div>
       <div class="card" data-name="Lagman" data-price="2200">
-        <h3>Lagman</h3><p>2200 KZT</p>
+        <h3>Lagman</h3><p>2200 KZT</p>
         <button class="add-btn">Add to Cart</button>
       </div>
     </div>
@@ -75,7 +75,7 @@
     <h2>Your Cart</h2>
     <ul id="cart-list"></ul>
     <p id="cart-total">Total: 0 KZT</p>
-    <button onclick="placeOrder()">Place Order</button>
+    <button id="place-order">Place Order</button>
   </div>
 
   <div id="toast" class="toast"></div>
@@ -89,5 +89,58 @@
       <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addBtns = document.querySelectorAll('.add-btn');
+      const cart = document.getElementById('cart');
+      const toggleCartBtn = document.getElementById('toggle-cart');
+      const cartList = document.getElementById('cart-list');
+      const cartTotal = document.getElementById('cart-total');
+      const cartCount = document.getElementById('cart-count');
+      let cartItems = [];
+
+      function updateCartDisplay() {
+        cartList.innerHTML = '';
+        let total = 0;
+        cartItems.forEach((item, index) => {
+          total += item.price;
+          const li = document.createElement('li');
+          li.innerHTML = `${item.name} - ${item.price} KZT <button onclick="removeItem(${index})">✖</button>`;
+          cartList.appendChild(li);
+        });
+        cartTotal.textContent = `Total: ${total} KZT`;
+        cartCount.textContent = cartItems.length;
+      }
+
+      function removeItem(index) {
+        cartItems.splice(index, 1);
+        updateCartDisplay();
+      }
+      window.removeItem = removeItem;
+
+      addBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.card');
+          const name = card.dataset.name;
+          const price = parseInt(card.dataset.price);
+          cartItems.push({ name, price });
+          updateCartDisplay();
+        });
+      });
+
+      toggleCartBtn.addEventListener('click', () => {
+        cart.classList.toggle('hidden');
+        cart.classList.toggle('open');
+      });
+
+      document.getElementById('place-order').addEventListener('click', () => {
+        if (cartItems.length === 0) return alert("Cart is empty!");
+        alert("Order placed successfully!");
+        cartItems = [];
+        updateCartDisplay();
+      });
+    });
+  </script>
 </body>
 </html>
