@@ -92,3 +92,34 @@ async function placeOrder() {
     alert("Failed to place order. Try again.");
   }
 }
+
+// Toggle cart open/close
+const toggleCartBtn = document.getElementById("toggle-cart");
+const cartSection = document.getElementById("cart");
+const cartCount = document.getElementById("cart-count");
+
+toggleCartBtn.addEventListener("click", () => {
+  cartSection.classList.toggle("open");
+});
+
+// Update cart count in button
+function updateCart() {
+  cartList.innerHTML = '';
+  let total = 0;
+  let itemCount = 0;
+  cart.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${item.name} x${item.qty}</span>
+      <span>${item.price * item.qty} KZT 
+        <button onclick="removeFromCart(${index})" style="margin-left:8px">❌</button>
+      </span>
+    `;
+    cartList.appendChild(li);
+    total += item.price * item.qty;
+    itemCount += item.qty;
+  });
+  cartTotal.textContent = `Total: ${total} KZT`;
+  cartCount.textContent = itemCount;
+  saveCart();
+}

@@ -264,7 +264,6 @@ footer .social i:hover {
 
 /* Right-side Cart */
 .cart {
-  position: fixed;
   top: 100px;
   right: 0;
   width: 300px;
@@ -308,4 +307,79 @@ footer .social i:hover {
 .toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+/* Floating Cart Toggle Button */
+#toggle-cart {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  z-index: 1001;
+  background: #e9a800;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#toggle-cart:hover {
+  background: #c79a00;
+}
+
+#cart-count {
+  background: white;
+  color: #e9a800;
+  padding: 0 6px;
+  margin-left: 6px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Slide-in Cart */
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 320px;
+  max-width: 90vw;
+  background: #fff8e1;
+  border-left: 2px solid #e9a800;
+  box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+  padding: 2rem 1.2rem;
+  overflow-y: auto;
+  border-radius: 12px 0 0 12px;
+}
+
+.cart.open {
+  transform: translateX(0);
+}
+
+.cart h2 {
+  text-align: center;
+  color: #e9a800;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart li {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.cart button {
+  margin-top: 1rem;
 }
