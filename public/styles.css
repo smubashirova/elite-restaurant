@@ -56,15 +56,18 @@ nav a:hover { color: #e9a800; }
 
 /* -------------   HERO   ------------- */
 .hero {
-  min-height: 60vh;
-  padding: 4rem 2rem;
-  background: url("images/hero-banner.jpg") center/cover no-repeat;
-  display: grid;
-  place-content: center;
-  text-align: center;
-  color: #fff;
+  height: 60vh;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url("images/hero-banner.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
   text-shadow: 1px 1px 6px rgba(0 0 0 / 0.6);
+  padding: 2rem;
+  border-radius: 0 0 2rem 2rem;
 }
+
 
 .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
 .hero p  { font-size: 1.5rem; }
@@ -100,14 +103,18 @@ nav a:hover { color: #e9a800; }
   width: 100%;
   margin-top: 1rem;
   padding: .6rem;
-  background: #e9a800;
-  color: #fff;
+  background: #ffcb05;
+  color: #333;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.25s;
+  transition: background 0.3s ease;
 }
-.card .add-btn:hover { background: #c79a00; }
+.card .add-btn:hover {
+  background: #e0b500;
+  transform: scale(1.05);
+}
 
 /* -------------   GALLERY   ------------- */
 .gallery { padding: 4rem 2rem; text-align: center; }
@@ -121,11 +128,16 @@ nav a:hover { color: #e9a800; }
 }
 
 .slider img {
+  border: 3px solid #ffcb05;
+  transition: transform 0.3s ease;
   width: 300px; height: 200px;
   object-fit: cover;
   border-radius: 12px;
   scroll-snap-align: start;
   box-shadow: 0 4px 10px rgba(0 0 0 / 0.15);
+}
+.slider img:hover {
+  transform: scale(1.05);
 }
 
 /* -------------   ABOUT   ------------- */
@@ -201,10 +213,10 @@ footer .social i:hover { transform: scale(1.2); }
   position: fixed;
   top: 0; right: -100%;
   width: 320px; max-width: 90vw; height: 100vh;
-  background: #fff8e1;
-  border-left: 2px solid #e9a800;
+  background: #fffaf0;
+  border-left: 3px dashed #ffcb05;
   border-radius: 12px 0 0 12px;
-  box-shadow: -3px 0 12px rgba(0,0,0,0.15);
+  box-shadow: -4px 0 10px rgba(0,0,0,0.08);
   padding: 2rem 1rem;
   overflow-y: auto;
   transition: right 0.35s ease;
@@ -212,7 +224,10 @@ footer .social i:hover { transform: scale(1.2); }
 }
 .cart.open { right: 0; }
 
-.cart h2 { color: #e9a800; margin-bottom: 1rem; text-align: center; }
+.cart h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #d08900;
+}
 .cart ul { list-style: none; padding: 0; }
 .cart li {
   display: flex; justify-content: space-between;
@@ -224,9 +239,13 @@ footer .social i:hover { transform: scale(1.2); }
 
 /* -------------   TOAST   ------------- */
 #toast {
+  font-family: 'Poppins', sans-serif;
+  background: #333;
+  color: #fff8dc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   position: fixed;
   bottom: 90px; right: 20px;
-  background: #333; color:#fff;
   padding: .6rem 1.2rem; border-radius: 8px;
   opacity: 0; transition: opacity .3s;
   z-index: 1002;

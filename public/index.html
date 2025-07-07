@@ -2,165 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Elite Restaurant – Taste authentic Kazakh dishes like Plov, Beshbarmak, and more. Visit us in the heart of Karnak.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Restaurant</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    /* Basic styling for layout */
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #222;
-      color: white;
-      padding: 1rem;
-    }
-
-    header nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1rem;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
-    #burger {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    nav ul.show {
-      display: block;
-    }
-
-    .hero {
-      background: url('images/food1.jpg') no-repeat center/cover;
-      color: white;
-      text-align: center;
-      padding: 5rem 1rem;
-    }
-
-    .menu-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .card {
-      background: #f7f7f7;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .card button {
-      margin-top: 0.5rem;
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .gallery img {
-      width: 100%;
-      max-width: 200px;
-      margin: 0.5rem;
-    }
-
-    .contact-container {
-      display: flex;
-      gap: 2rem;
-      padding: 1rem;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #222;
-      color: white;
-    }
-
-    /* --- Cart styles --- */
-    .cart {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 300px;
-      height: 100vh;
-      background: #fff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-      padding: 1rem;
-      overflow-y: auto;
-      transition: right 0.3s ease-in-out;
-      z-index: 999;
-    }
-
-    .cart.open {
-      right: 0;
-    }
-
-    #toggle-cart {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #e91e63;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      padding: 1rem;
-      font-size: 1.5rem;
-      z-index: 1000;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    #toast {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: #333;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-
-    #toast.show {
-      opacity: 1;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
-    <div class="logo-container">
-      <img src="images/elite-logo.png" alt="Elite Restaurant Logo" class="logo-image" width="80"/>
-    </div>
+    <img src="images/elite-logo.png" alt="Elite Logo" class="logo-image" />
     <button id="burger">☰</button>
     <nav>
       <ul>
@@ -172,194 +23,71 @@
     </nav>
   </header>
 
-  <!-- Hero -->
   <section id="home" class="hero">
     <h1>Welcome to Elite</h1>
     <p>A Taste of Kazakhstan</p>
   </section>
 
-  <!-- Menu -->
   <section id="menu" class="menu">
     <h2>Our Menu</h2>
     <div class="menu-cards">
       <div class="card" data-name="Plov" data-price="2300">
         <h3>Plov</h3><p>2300 KZT</p>
-        <button class="add-btn">Add to Cart</button>
+        <button class="add-btn">Add to Cart</button>
       </div>
       <div class="card" data-name="Beshbarmak" data-price="2500">
         <h3>Beshbarmak</h3><p>2500 KZT</p>
-        <button class="add-btn">Add to Cart</button>
+        <button class="add-btn">Add to Cart</button>
       </div>
       <div class="card" data-name="Lagman" data-price="2200">
         <h3>Lagman</h3><p>2200 KZT</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
-      <div class="card" data-name="Baursak" data-price="900">
-        <h3>Baursak</h3><p>900 KZT</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
-      <div class="card" data-name="Kumys" data-price="1500">
-        <h3>Kumys</h3><p>1500 KZT</p>
-        <button class="add-btn">Add to Cart</button>
+        <button class="add-btn">Add to Cart</button>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
   <section class="gallery">
     <h2>Gallery</h2>
     <div class="slider">
       <img src="images/food1.jpg" alt="Dish 1" />
       <img src="images/food2.jpg" alt="Dish 2" />
-      <img src="images/interior1.jpg" alt="Interior 1" />
       <img src="images/food3.jpg" alt="Dish 3" />
-      <img src="images/kitchen.jpg" alt="Kitchen" />
-      <img src="images/village.jpg" alt="Village" />
     </div>
   </section>
 
-  <!-- About -->
   <section id="about" class="about">
     <h2>About Us</h2>
-    <p>
-      Elite was founded in the heart of Karnak to celebrate the rich culinary
-      traditions of Kazakhstan. We bring age‑old recipes like plov and
-      beshbarmak to your table with love and hospitality.
-    </p>
+    <p>We are a family-owned Kazakh restaurant bringing traditional flavors with a modern touch.</p>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="contact">
     <h2>Contact Us</h2>
-    <div class="contact-container">
-      <form id="contact-form">
-        <input name="name" placeholder="Name" required />
-        <input name="email" type="email" placeholder="Email" required />
-        <textarea name="message" placeholder="Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-      <iframe src="https://www.google.com/maps?q=Karnak,Kazakhstan&output=embed" width="300" height="200" style="border:0;" loading="lazy"></iframe>
-    </div>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
-  <!-- Cart Sidebar -->
-  <section id="cart" class="cart">
+  <button id="toggle-cart">🛒 Cart <span id="cart-count">0</span></button>
+  <div id="cart" class="cart hidden">
     <h2>Your Cart</h2>
-    <ul id="cart-items"></ul>
+    <ul id="cart-list"></ul>
     <p id="cart-total">Total: 0 KZT</p>
-    <div class="cart-buttons">
-      <button id="clear-cart">Clear Cart</button>
-    </div>
-  </section>
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="hours">
-      <p>Mon-Sat: 10:00-22:00</p>
-      <p>Sun: 12:00-20:00</p>
-    </div>
-    <div class="social">
-      <a href="https://www.instagram.com/YOUR_USERNAME_HERE" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-  </footer>
-
-  <!-- Toast -->
   <div id="toast" class="toast"></div>
 
-  <!-- Floating Cart Button -->
-  <button id="toggle-cart" aria-label="View Cart">🛒 <span id="cart-count">0</span></button>
-
-  <!-- Script -->
-  <script>
-    // Burger Menu
-    document.getElementById('burger').onclick = () =>
-      document.querySelector('nav ul').classList.toggle('show');
-
-    // Contact Form
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      try {
-        const res = await fetch('/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        alert(await res.text());
-        form.reset();
-      } catch {
-        alert('Network error — please try again later.');
-      }
-    });
-
-    // Cart Logic
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const cartList  = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const cartCount = document.getElementById('cart-count');
-
-    function saveCart() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function updateCart() {
-      cartList.innerHTML = '';
-      let total = 0;
-      let count = 0;
-      cart.forEach((item, i) => {
-        total += item.price * item.qty;
-        count += item.qty;
-        cartList.insertAdjacentHTML(
-          'beforeend',
-          `<li>${item.name} ×${item.qty} — ${item.price * item.qty} KZT
-            <button onclick="removeItem(${i})">Remove</button>
-          </li>`
-        );
-      });
-      cartTotal.textContent = 'Total: ' + total + ' KZT';
-      cartCount.textContent = count;
-      saveCart();
-    }
-
-    window.removeItem = idx => {
-      cart.splice(idx, 1);
-      updateCart();
-    };
-
-    document.getElementById('clear-cart')
-            .addEventListener('click', () => {
-              cart.length = 0;
-              updateCart();
-            });
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
-    }
-
-    document.querySelectorAll('.add-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.card');
-        const name = card.dataset.name;
-        const price = +card.dataset.price;
-        const existing = cart.find(i => i.name === name);
-        existing ? existing.qty++ : cart.push({ name, price, qty: 1 });
-        updateCart();
-        showToast(name + ' added ✓');
-      });
-    });
-
-    document.getElementById("toggle-cart")
-            .addEventListener("click", () =>
-              document.getElementById("cart").classList.toggle("open")
-            );
-
-    updateCart(); // Initialize cart
-  </script>
+  <footer>
+    <div class="hours">
+      <p>Mon-Sat: 10am - 10pm</p>
+      <p>Sun: Closed</p>
+    </div>
+    <div class="social">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
 </body>
 </html>
