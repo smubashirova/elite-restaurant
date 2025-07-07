@@ -1,23 +1,11 @@
-/**
- * Backend server for Elite Restaurant
- * Only handles API + static files – no browser DOM code here.
- */
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
+const express    = require("express");
+const cors       = require("cors");
+const helmet     = require("helmet");
 const compression = require("compression");
-const { Pool } = require("pg");
-const path = require("path");
+const path       = require("path");
 
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 3000;
-
-/* ----------  PostgreSQL ---------- */
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_SSL === "false" ? false : { rejectUnauthorized: false },
-});
 
 /* ----------  Middleware ---------- */
 app.use(helmet());
@@ -32,37 +20,28 @@ app.get("/health", (_req, res) => res.send("ok"));
 /* ----------  Contact Form ---------- */
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
-  if (!name || !email || !message) return res.status(400).json({ error: "Missing fields" });
 
-  try {
-    await pool.query(
-      `INSERT INTO contacts (name, email, message) VALUES ($1,$2,$3)`,
-      [name, email, message]
-    );
-    res.json({ success: true, message: "Thanks for reaching out! We'll reply soon." });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "DB error" });
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: "Missing fields" });
   }
+
+  // Simulate success response
+  console.log(`📩 New contact: ${name}, ${email}, ${message}`);
+  res.json({ success: true, message: "Thanks! We’ll reply soon." });
 });
 
 /* ----------  Orders API ---------- */
 app.post("/api/orders", async (req, res) => {
   const { items, total } = req.body;
-  if (!Array.isArray(items) || !items.length || !total)
-    return res.status(400).json({ error: "Invalid order data" });
 
-  try {
-    const result = await pool.query(
-      `INSERT INTO orders (items, total_price, created_at)
-       VALUES ($1,$2,NOW()) RETURNING id`,
-      [JSON.stringify(items), total]
-    );
-    res.json({ success: true, orderId: result.rows[0].id, message: "Order placed successfully!" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "DB error" });
+  if (!Array.isArray(items) || !items.length || typeof total !== "number") {
+    return res.status(400).json({ error: "Invalid order data" });
   }
+
+  // Simulate order success response
+  const fakeOrderId = Math.floor(Math.random() * 100000);
+  console.log(`🛒 Order received: ${JSON.stringify(items)} Total: ${total}`);
+  res.json({ success: true, orderId: fakeOrderId, message: "Order placed!" });
 });
 
 /* ----------  SPA Fallback ---------- */
@@ -71,4 +50,4 @@ app.get("*", (_req, res) => {
 });
 
 /* ----------  Start Server ---------- */
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
